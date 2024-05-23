@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: "Создание таблицы"
+      author: samat
+      changes:
+        - createTable:
+            tableName: math
+            columns:
+              - column:
+                  name: id
+                  type: serial
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: question
+                  type: varchar(500)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: answer
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: level
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: "Ввод начальных данных"
+      author: samat
+      changes:
+        - loadData:
+            file: data.csv
+            quotchar: "'"
+            separator: ;
+            tableName: math

@@ -1,0 +1,51 @@
+services:
+  mathdb:
+    image: postgres:16.2-alpine3.19
+    container_name: mathdb
+    environment:
+      - POSTGRES_DB=math
+      - POSTGRES_USER=mathAdmin
+      - POSTGRES_PASSWORD=1234567890
+    volumes:
+      - mathdb_data:/var/lib/postgresql/data
+    ports:
+      - 8100:5432
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U admin -d math" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+  historydb:
+    image: postgres:16.2-alpine3.19
+    container_name: historydb
+    environment:
+      - POSTGRES_DB=history
+      - POSTGRES_USER=historyAdmin
+      - POSTGRES_PASSWORD=1234567890
+    volumes:
+      - historydb_data:/var/lib/postgresql/data
+    ports:
+      - 8101:5432
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U admin -d history" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+
+volumes:
+  mathdb_data:
+    name: mathdata
+  historydb_data:
+    name: historydata
