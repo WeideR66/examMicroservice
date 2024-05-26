@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: "Создание таблицы"
+      author: samat
+      changes:
+        - createTable:
+            tableName: history
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: question
+                  type: varchar(500)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: answer
+                  type: varchar(150)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: level
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: "Ввод начальных данных"
+      author: samat
+      changes:
+        - loadData:
+            file: data.csv
+            quotchar: "'"
+            separator: ;
+            tableName: history

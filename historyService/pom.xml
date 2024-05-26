@@ -8,11 +8,11 @@
         <version>3.3.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>org.mathservice</groupId>
-    <artifactId>mathService</artifactId>
+    <groupId>org.historyservice</groupId>
+    <artifactId>historyService</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>mathService</name>
-    <description>mathService</description>
+    <name>historyService</name>
+    <description>historyService</description>
     <properties>
         <java.version>17</java.version>
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
