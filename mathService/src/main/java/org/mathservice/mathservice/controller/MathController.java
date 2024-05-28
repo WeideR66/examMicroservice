@@ -23,18 +23,18 @@ public class MathController {
         this.mathService = mathService;
     }
 
-    @GetMapping("/{amount}")
-    public ResponseEntity<List<MathDTO>> getRandomQuestions(@PathVariable @Min(1) int amount) {
+    @GetMapping
+    public ResponseEntity<List<MathDTO>> getRandomQuestions(@RequestParam(defaultValue = "5") @Min(1) int amount) {
         return ResponseEntity.ok(mathService.getRandomQuestions(amount));
     }
 
-    @GetMapping("/level-{level}")
+    @GetMapping("/{level}")
     public ResponseEntity<List<MathDTO>> getAllQuestionsByLevel(@PathVariable QuestionLevel level) {
         return ResponseEntity.ok(mathService.getAllQuestionsByLevel(level));
     }
 
-    @GetMapping("/level-{level}/{amount}")
-    public ResponseEntity<List<MathDTO>> getRandomQuestionsByLevel(@PathVariable QuestionLevel level, @PathVariable @Min(1) int amount) {
+    @GetMapping(value = "/{level}", params = {"amount"})
+    public ResponseEntity<List<MathDTO>> getRandomQuestionsByLevel(@PathVariable QuestionLevel level, @RequestParam @Min(1) int amount) {
         return ResponseEntity.ok().body(mathService.getRandomQuestionsByLevel(level, amount));
     }
 

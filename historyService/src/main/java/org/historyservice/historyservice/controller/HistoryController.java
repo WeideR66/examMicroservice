@@ -24,22 +24,22 @@ public class HistoryController {
         this.historyService = historyService;
     }
 
-    @GetMapping("/{amount}")
-    public ResponseEntity<List<HistoryDTO>> getRandomQuestions(@PathVariable @Min(1) int amount) {
+    @GetMapping
+    public ResponseEntity<List<HistoryDTO>> getRandomQuestions(@RequestParam(defaultValue = "5") @Min(1) int amount) {
         return ResponseEntity.ok().body(
                 historyService.getRandomQuestions(amount)
         );
     }
 
-    @GetMapping("/level-{level}")
+    @GetMapping("/{level}")
     public ResponseEntity<List<HistoryDTO>> getAllQuestionByLevel(@PathVariable QuestionLevel level) {
         return ResponseEntity.ok().body(
                 historyService.getAllQuestionsByLevel(level)
         );
     }
 
-    @GetMapping("/level-{level}/{amount}")
-    public ResponseEntity<List<HistoryDTO>> getRandomQuestionsByLevel(@PathVariable QuestionLevel level, @PathVariable @Min(1) int amount) {
+    @GetMapping(value = "/{level}", params = {"amount"})
+    public ResponseEntity<List<HistoryDTO>> getRandomQuestionsByLevel(@PathVariable QuestionLevel level, @RequestParam @Min(1) int amount) {
         return ResponseEntity.ok().body(
                 historyService.getRandomQuestionsByLevel(level, amount)
         );
