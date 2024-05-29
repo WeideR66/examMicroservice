@@ -1,5 +1,8 @@
 package org.mathservice.mathservice.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import org.mathservice.mathservice.dto.MathDTO;
@@ -24,21 +27,41 @@ public class MathController {
     }
 
     @GetMapping
+    @Operation(summary = "Возвращает определенное количество рандомных вопросов")
     public ResponseEntity<List<MathDTO>> getRandomQuestions(@RequestParam(defaultValue = "5") @Min(1) int amount) {
         return ResponseEntity.ok(mathService.getRandomQuestions(amount));
     }
 
     @GetMapping("/{level}")
+    @Operation(summary = "Вощвращает все вопросы определенной сложности")
     public ResponseEntity<List<MathDTO>> getAllQuestionsByLevel(@PathVariable QuestionLevel level) {
         return ResponseEntity.ok(mathService.getAllQuestionsByLevel(level));
     }
 
     @GetMapping(value = "/{level}", params = {"amount"})
+    @Operation(summary = "Возвращает определенное количество вопрсоов определенной сложности")
     public ResponseEntity<List<MathDTO>> getRandomQuestionsByLevel(@PathVariable QuestionLevel level, @RequestParam @Min(1) int amount) {
         return ResponseEntity.ok().body(mathService.getRandomQuestionsByLevel(level, amount));
     }
 
     @PostMapping
+    @Operation(
+            summary = "Добавляет новые вопросы",
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    content = @Content(
+                            examples = @ExampleObject(
+                                    value = """
+                                            [
+                                                {
+                                                    "question": "3 * 3",
+                                                    "answer": "9",
+                                                    "level": "easy"
+                                                }
+                                            ]
+                                            """
+                            )
+                    )
+            ))
     public ResponseEntity<DataCreatedResponse> addQuestions(@RequestBody @Valid List<MathDTO> questions) {
         mathService.addNewQuestions(questions);
         return ResponseEntity
