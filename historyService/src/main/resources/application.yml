@@ -13,5 +13,9 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  kafka:
+    kafka-topic:
+      producer: "logs"
+    bootstrap-servers: localhost:29092
 server:
   port: 8082

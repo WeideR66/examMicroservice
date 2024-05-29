@@ -29,7 +29,7 @@ class MathMapperTest {
 
     @Test
     public void rightTransformFromDTOToEntity() {
-        MathDTO dto = new MathDTO("question", "answer", QuestionLevel.medium);
+        MathDTO dto = new MathDTO(null, "question", "answer", QuestionLevel.medium);
         System.out.println(dto);
         MathEntity entity = mapper.fromDTOToEntity(dto);
         System.out.println(entity);

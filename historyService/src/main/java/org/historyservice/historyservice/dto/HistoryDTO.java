@@ -11,6 +11,7 @@ import org.historyservice.historyservice.utils.QuestionLevel;
 @NoArgsConstructor
 @AllArgsConstructor
 public class HistoryDTO {
+    private Long id;
     @NotNull(message = "Необходим вопрос")
     @Size(min = 1, max = 500, message = "Вопрос может быть не дольше 500 символов")
     private String question;

@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: notificator
+  kafka:
+    consumer:
+      group-id: "notifiers"
+    bootstrap-servers: localhost:29092
+    kafka-topic:
+      consumer: "logs"

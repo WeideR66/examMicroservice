@@ -4,6 +4,7 @@ package org.mathservice.mathservice.dto;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.mathservice.mathservice.utils.QuestionLevel;
@@ -11,7 +12,9 @@ import org.mathservice.mathservice.utils.QuestionLevel;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class MathDTO {
+    private Long id;
     @NotNull(message = "Необходим вопрос")
     @Size(min = 1, max = 500, message = "Вопрос может быть не дольше 500 символов")
     private String question;
