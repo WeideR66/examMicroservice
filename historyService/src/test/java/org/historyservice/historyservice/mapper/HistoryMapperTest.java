@@ -1,9 +1,9 @@
-package org.mathservice.mathservice.mapper;
+package org.historyservice.historyservice.mapper;
 
+import org.historyservice.historyservice.dto.HistoryDTO;
+import org.historyservice.historyservice.entities.HistoryEntity;
+import org.historyservice.historyservice.utils.QuestionLevel;
 import org.junit.jupiter.api.Test;
-import org.mathservice.mathservice.dto.MathDTO;
-import org.mathservice.mathservice.entities.MathEntity;
-import org.mathservice.mathservice.utils.QuestionLevel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.test.context.EmbeddedKafka;
@@ -15,15 +15,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @EmbeddedKafka
-class MathMapperTest {
+class HistoryMapperTest {
     @Autowired
-    private MathMapper mapper;
+    private HistoryMapper mapper;
 
     @Test
     public void rightTransformFromEntityToDTO() {
-        MathEntity entity = new MathEntity(null, "question", "answer", QuestionLevel.medium);
+        HistoryEntity entity = new HistoryEntity(null, "question", "answer", QuestionLevel.medium);
         System.out.println(entity);
-        MathDTO dto = mapper.fromEntityToDTO(entity);
+        HistoryDTO dto = mapper.fromEntityToDTO(entity);
         System.out.println(dto);
         assertAll(
                 () -> assertEquals(entity.getQuestion(), dto.getQuestion()),
@@ -34,9 +34,9 @@ class MathMapperTest {
 
     @Test
     public void rightTransformFromDTOToEntity() {
-        MathDTO dto = new MathDTO(null, "question", "answer", QuestionLevel.medium);
+        HistoryDTO dto = new HistoryDTO(null, "question", "answer", QuestionLevel.medium);
         System.out.println(dto);
-        MathEntity entity = mapper.fromDTOToEntity(dto);
+        HistoryEntity entity = mapper.fromDTOToEntity(dto);
         System.out.println(entity);
         assertAll(
                 () -> assertEquals(entity.getQuestion(), dto.getQuestion()),
@@ -47,12 +47,12 @@ class MathMapperTest {
 
     @Test
     public void rightTransformFromEntityListToDtoList() {
-        List<MathEntity> entities = new ArrayList<>();
+        List<HistoryEntity> entities = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            entities.add(new MathEntity(null, "Questions " + i, "Answer " + i, QuestionLevel.easy));
+            entities.add(new HistoryEntity(null, "Questions " + i, "Answer " + i, QuestionLevel.easy));
         }
 
-        List<MathDTO> dtos = mapper.fromEntityListToDTOList(entities);
+        List<HistoryDTO> dtos = mapper.fromEntityListToDTOList(entities);
 
         System.out.println(entities);
         System.out.println(dtos);
@@ -61,12 +61,12 @@ class MathMapperTest {
 
     @Test
     public void rightTransformFromDtoListToEntityList() {
-        List<MathDTO> dtos = new ArrayList<>();
+        List<HistoryDTO> dtos = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            dtos.add(new MathDTO(null, "Questions " + i, "Answer " + i, QuestionLevel.easy));
+            dtos.add(new HistoryDTO(null, "Questions " + i, "Answer " + i, QuestionLevel.easy));
         }
 
-        List<MathEntity> entities = mapper.fromDTOListToEntityList(dtos);
+        List<HistoryEntity> entities = mapper.fromDTOListToEntityList(dtos);
 
         assertEquals(dtos.size(), entities.size());
     }

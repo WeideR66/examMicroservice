@@ -14,7 +14,7 @@ public interface HistoryRepository extends CrudRepository<HistoryEntity, Long> {
     List<HistoryEntity> findAllByLevelAndIdIn(@NotNull QuestionLevel level, @NotNull List<Long> ids);
 
     @Query("select id from HistoryEntity")
-    List<Long> findAllIds();
+    List<Long> findAllId();
 
     @Query("select id from HistoryEntity where level = :level")
     List<Long> findIdsByLevel(@Param("level") @NotNull QuestionLevel level);

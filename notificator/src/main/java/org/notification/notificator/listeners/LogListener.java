@@ -1,6 +1,5 @@
 package org.notification.notificator.listeners;
 
-import lombok.extern.slf4j.Slf4j;
 import org.notification.notificator.dto.LogDTO;
 import org.notification.notificator.service.LogOut;
 import org.springframework.beans.factory.annotation.Autowired;

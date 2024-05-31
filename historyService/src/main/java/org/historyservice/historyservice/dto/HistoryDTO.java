@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.historyservice.historyservice.utils.QuestionLevel;
@@ -11,6 +12,7 @@ import org.historyservice.historyservice.utils.QuestionLevel;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class HistoryDTO {
     @Schema(name = "id", description = "ID вопроса. Необязателен.")
     private Long id;

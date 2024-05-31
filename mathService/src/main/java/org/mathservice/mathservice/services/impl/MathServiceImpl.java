@@ -2,7 +2,6 @@ package org.mathservice.mathservice.services.impl;
 
 import org.mathservice.mathservice.dto.LogDTO;
 import org.mathservice.mathservice.dto.MathDTO;
-import org.mathservice.mathservice.entities.MathEntity;
 import org.mathservice.mathservice.mapper.MathMapper;
 import org.mathservice.mathservice.repositories.MathRepository;
 import org.mathservice.mathservice.services.MathService;

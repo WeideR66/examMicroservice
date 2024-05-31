@@ -1,6 +1,7 @@
 package org.exam.examservice.service.impl;
 
 import com.netflix.discovery.EurekaClient;
+import lombok.NoArgsConstructor;
 import org.exam.examservice.dto.QuestionDTO;
 import org.exam.examservice.dto.RequestAddQuestionsDTO;
 import org.exam.examservice.dto.RequestQuestionsDTO;
@@ -10,7 +11,6 @@ import org.exam.examservice.service.ExamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
@@ -19,10 +19,11 @@ import org.springframework.web.client.RestTemplate;
 import java.util.*;
 
 @Service
+@NoArgsConstructor
 public class ExamServiceImpl implements ExamService {
 
-    private final RestTemplate restTemplate;
-    private final EurekaClient eurekaClient;
+    private RestTemplate restTemplate;
+    private EurekaClient eurekaClient;
 
     @Autowired
     public ExamServiceImpl(RestTemplate restTemplate, EurekaClient eurekaClient) {

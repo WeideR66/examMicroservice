@@ -34,7 +34,7 @@ public class HistoryServiceImpl implements HistoryService {
 
     @Override
     public List<HistoryDTO> getRandomQuestions(int amount) {
-        List<Long> ids = historyRepository.findAllIds();
+        List<Long> ids = historyRepository.findAllId();
 
         if(ids.size() <= amount) {
             sendLog(
